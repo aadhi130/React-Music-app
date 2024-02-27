@@ -8,7 +8,7 @@ function Container() {
   return (
     <Routes>
         <Route path={`/`} element={<Home/>}/>
-        <Route path={`/music`} element={<Music/>}/>
+        <Route path={`/music/:id`} element={<Music/>}/>
         <Route path={`/*`} element={<Pnf/>}/>
 
 

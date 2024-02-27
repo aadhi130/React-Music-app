@@ -1,9 +1,22 @@
 import React,{useState} from 'react'
 
-function Search() {
+function Search(props) {
     const[key,setKey] = useState('')
+    const [err,setError]= useState(false)
+    const [errMsg,setErrorMsg] = useState('')
+
 
     const handler = () =>{
+        if(!key){
+            setError(true)
+            setErrorMsg('The input field should not be empty..')
+            setTimeout(()=>{
+                setError(false)
+                setErrorMsg('')
+            },3000)
+        } else{
+            props.find(key)
+        }
 
     }
 
@@ -19,8 +32,11 @@ function Search() {
                 <div className="form-group">
                     <div className="input-group">
                         <input type="search" name="key" value={key} onChange={(e)=> setKey(e.target.value)}id="key"className="form-control" placeholder="Enter artist name here"></input>
-                        <button className="btn btn-success">Search</button> 
+                        <button onClick={handler} className="btn btn-success">Search</button> 
                     </div>
+                    <strong className="text-danger">
+                        { err ? errMsg : null}
+                    </strong>
                 </div>
             </div>
         </div>
